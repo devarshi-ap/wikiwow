@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -7,7 +8,35 @@ export default function Home() {
 
     const [month, setMonth] = useState("1");
     const [day, setDay] = useState(1);
+    const [totalEvents, setTotalEvents] = useState([])
     const [events, setEvents] = useState([]);
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log(`${month}/${day}`)
+
+        axios.get(`https://history.muffinlabs.com/date/${month}/${day}`)
+            .then(res => {
+                console.log(res.data.data.Events.slice(0, 5));
+                setTotalEvents(res.data.data.Events);
+                setEvents(res.data.data.Events.slice(0, 5));
+            })
+            .catch(err => console.log(err))
+    }
+
+    const eventElements = events.map((ev, index) => (
+        <TimelineEvent 
+            date={ev.year}
+            title={ev.links[0].title}
+            description={ev.text}
+            url={ev.links[0].link}
+            key={index}
+        />
+    ));
+
+    const addEvents = () => {
+        setEvents(totalEvents.slice(0, events.length + 5))
+    }
 
     return (
         <div className="grid place-content-center bg-coolwhite min-h-screen py-5">
@@ -39,7 +68,7 @@ export default function Home() {
                 What happened on <span className='font-bold underline'>{month.toUpperCase()}/{day}</span>?
             </h1>
 
-            <div className="my-4 flex flex-row">
+            <form onSubmit={handleSubmit} className="my-4 flex flex-row">
                 <div className='w-1/4 flex flex-col [&>*]:bg-coolwhite text-gray [&>*]:text-center [&>*]:border [&>*]:border-black [&>*]:py-2 [&>*]:rounded-sm'>
                     <select name="month" value={month} onChange={e => setMonth(e.target.value)} required>
                         <option value="1">JAN.</option>
@@ -62,16 +91,23 @@ export default function Home() {
                     className="w-full bg-coolwhite text-gray hover:bg-dark_gray hover:text-white font-bold text-[1.25rem] hover:scale-105 transition rounded-sm duration-700 border border-1"
                     type="submit"
                 >Let&apos;s have a look! 🔮</button>
-            </div>
+            </form>
             
-            <ol className="relative border-l border-gray-200 dark:border-gray-700 my-16 max-w-3xl">                  
-                <TimelineEvent 
-                    date="153 BC"
-                    title="Julian calendar"
-                    description="The Julian calendar takes effect as the civil calendar of the Roman Empire, establishing January 1 as the new date of the new year."
-                    url="https://wikipedia.org/wiki/Julian_calendar"
-                />
+            <ol className="relative border-l border-gray my-16 max-w-3xl">                  
+                {eventElements}
             </ol>
+
+            {(events.length > 0 && events.length < totalEvents.length) ? 
+                (
+                    <>
+                        <button className='border border-1 rounded-2xl w-fit p-2 mx-auto bg-brown text-white font-RobotoMono animate-hover' onClick={addEvents}>See More</button>
+                        <h1 className='w-fit mx-auto text-orange text-sm my-3 font-RobotoMono underline' onClick={() => {window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}}>Welcome back to the future!<br />Psst...click me jump to top!</h1>
+                    </>
+                )
+                :
+                <></>
+            }
+            {}
         </div>
     );
 }
