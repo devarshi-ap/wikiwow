@@ -116,7 +116,7 @@ export default function Home() {
                 </button>
             </form>
 
-            <ol className="relative border-l border-gray my-16 max-w-3xl">
+            <ol className="relative border-l border-gray my-16 max-w-xl">
                 {eventElements}
             </ol>
 
