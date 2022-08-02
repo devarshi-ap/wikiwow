@@ -10,7 +10,7 @@ module.exports = {
                 RobotoMono: ['Roboto Mono', 'monospace'],
             },
             animation: {
-                'hover': 'bounce 6s linear infinite',
+                'hover': 'bounce 2s linear infinite',
             }
         },
         colors: {
