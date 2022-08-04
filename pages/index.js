@@ -3,16 +3,20 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 import TimelineEvent from './components/TimelineEvent';
+import { MdManageSearch } from 'react-icons/md'
 
 export default function Home() {
     const [month, setMonth] = useState('1');
     const [day, setDay] = useState(1);
     const [totalEvents, setTotalEvents] = useState([]);
     const [events, setEvents] = useState([]);
+    const [queryEvents, setQueryEvents] = useState([]);
+    const [showQuery, setShowQuery] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`${month}/${day}`);
+        setShowQuery(true);
 
         axios
             .get(`https://history.muffinlabs.com/date/${month}/${day}`)
@@ -20,14 +24,15 @@ export default function Home() {
                 console.log(res.data.data.Events.slice(0, 5));
                 setTotalEvents(res.data.data.Events);
                 setEvents(res.data.data.Events.slice(0, 5));
+                setQueryEvents(res.data.data.Events.slice(0, 5));
             })
             .catch((err) => {
-                console.log(err)
-                alert("Input Valid Date!")
+                console.log(err);
+                alert('Input Valid Date!');
             });
     };
 
-    const eventElements = events.map((ev, index) => (
+    const eventElements = queryEvents.map((ev, index) => (
         <TimelineEvent
             date={ev.year}
             title={ev.links[0].title}
@@ -37,8 +42,24 @@ export default function Home() {
         />
     ));
 
+    const handleQueryChange = (event) => {
+        console.log(event.target.value);
+        setQueryEvents(
+            events.filter((ev) =>
+                ev.text.toLowerCase().includes(event.target.value.toLowerCase())
+            )
+        );
+        // setQueryEvents(events.filter(ev => ev.links[0].title.toLowerCase().includes(event.target.value.toLowerCase())))
+    };
+
     const addEvents = () => {
         setEvents(totalEvents.slice(0, events.length + 5));
+        setQueryEvents(totalEvents.slice(0, events.length + 5));
+    };
+
+    const addAllEvents = () => {
+        setEvents(totalEvents);
+        setQueryEvents(totalEvents);
     };
 
     return (
@@ -52,13 +73,14 @@ export default function Home() {
                     damping: 40,
                     delay: 0.5,
                 }}
-                className="w-fit mx-auto mb-7 mt-3"
-            >
+                className="w-fit mx-auto mb-7 mt-3 hover:cursor-pointer">
                 <Image
                     src="/wikiglobe.png"
                     alt="wiki globe"
                     height="200px"
                     width="200px"
+                    title="Click to Reset"
+                    onClick={() => window.location.reload(false)}
                 />
             </motion.div>
 
@@ -119,17 +141,38 @@ export default function Home() {
                 </button>
             </form>
 
-            <ol className="relative border-l border-gray my-16 max-w-xl">
+            {showQuery &&
+                <div className="flex justify-center flex-row w-full mt-5">
+                    <MdManageSearch className='text-4xl my-auto mr-2'/>
+                    <input
+                        type="search"
+                        className="block w-3/4 px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding border border-solid border-gray rounded transition ease-in-out focus:text-gray focus:bg-white focus:border-skyblue focus:outline-none"
+                        placeholder="Query Event Descriptions"
+                        onChange={handleQueryChange}
+                    />
+                </div>
+            }
+
+            <ol className="relative border-l border-gray my-10 max-w-xl">
                 {eventElements}
             </ol>
 
-            {events.length > 0 && events.length < totalEvents.length && (
-                <button
-                    className="border border-1 rounded-2xl w-fit p-2 mx-auto bg-brown text-white font-RobotoMono animate-hover"
-                    onClick={addEvents}
-                >
-                    See More
-                </button>
+            {queryEvents.length > 0 && queryEvents.length < totalEvents.length && (
+                <div className="flex flex-row">
+                    <button
+                        className="border border-1 rounded-2xl w-fit p-2 mx-auto bg-brown text-white font-RobotoMono animate-hover"
+                        onClick={addEvents}
+                    >
+                        See More
+                    </button>
+
+                    <button
+                        className="border border-1 rounded-2xl w-fit p-2 mx-auto bg-brown text-white font-RobotoMono animate-hover"
+                        onClick={addAllEvents}
+                    >
+                        See All
+                    </button>
+                </div>
             )}
             <h1
                 className="w-fit mx-auto text-orange text-sm my-3 font-RobotoMono underline"
