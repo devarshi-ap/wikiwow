@@ -21,7 +21,10 @@ export default function Home() {
                 setTotalEvents(res.data.data.Events);
                 setEvents(res.data.data.Events.slice(0, 5));
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err)
+                alert("Input Valid Date!")
+            });
     };
 
     const eventElements = events.map((ev, index) => (
