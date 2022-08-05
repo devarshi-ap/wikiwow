@@ -7,7 +7,7 @@ import { MdManageSearch } from 'react-icons/md'
 
 export default function Home() {
     const [month, setMonth] = useState('1');
-    const [day, setDay] = useState(1);
+    const [day, setDay] = useState();
     const [totalEvents, setTotalEvents] = useState([]);
     const [events, setEvents] = useState([]);
     const [queryEvents, setQueryEvents] = useState([]);
@@ -80,6 +80,7 @@ export default function Home() {
                     height="200px"
                     width="200px"
                     title="Click to Reset"
+                    data-cy="refresh"
                     onClick={() => window.location.reload(false)}
                 />
             </motion.div>
@@ -107,6 +108,7 @@ export default function Home() {
                         name="month"
                         value={month}
                         onChange={(e) => setMonth(e.target.value)}
+                        data-cy="evnt-mm"
                         required
                     >
                         <option value="1">JAN.</option>
@@ -129,6 +131,7 @@ export default function Home() {
                         max="31"
                         value={day}
                         onChange={(e) => setDay(e.target.value)}
+                        data-cy="evnt-dd"
                         required
                     ></input>
                 </div>
@@ -136,6 +139,7 @@ export default function Home() {
                 <button
                     className="w-full bg-coolwhite text-gray hover:bg-dark_gray hover:text-white font-bold text-[1.25rem] hover:scale-105 transition rounded-sm duration-700 border border-1"
                     type="submit"
+                    data-cy="evnt-submit"
                 >
                     Let&apos;s have a look! 🔮
                 </button>
@@ -149,6 +153,7 @@ export default function Home() {
                         className="block w-3/4 px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding border border-solid border-gray rounded transition ease-in-out focus:text-gray focus:bg-white focus:border-skyblue focus:outline-none"
                         placeholder="Query Event Descriptions"
                         onChange={handleQueryChange}
+                        data-cy="evnt-querybar"
                     />
                 </div>
             }
@@ -162,12 +167,14 @@ export default function Home() {
                     <button
                         className="border border-1 rounded-2xl w-fit p-2 mx-auto bg-brown text-white font-RobotoMono animate-hover"
                         onClick={addEvents}
+                        data-cy="evnt-see_more"
                     >
                         See More
                     </button>
 
                     <button
                         className="border border-1 rounded-2xl w-fit p-2 mx-auto bg-brown text-white font-RobotoMono animate-hover"
+                        data-cy="evnt-see_all"
                         onClick={addAllEvents}
                     >
                         See All
@@ -176,6 +183,7 @@ export default function Home() {
             )}
             <h1
                 className="w-fit mx-auto text-orange text-sm my-3 font-RobotoMono underline"
+                data-cy="evnt-jump2top"
                 onClick={() => {
                     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}
