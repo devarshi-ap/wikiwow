@@ -1,10 +1,15 @@
 ## _Wikiwow_
 
-#### <em>**Wikiwow**</em> is \_.
+#### <em>**Wikiwow**</em> is a time machine.
+
+Well... not in the *traditional sense*. Specify any month and day, and **Wikiwow** will list to you every significant event that occurred on that date, in chronological order.
+
+Scroll away into the tens of hundreds of awesome historical events, curated by Wikipedia's API, that have transpired all around our World!
+
 
 <div align="center">
   <img
-    src="https://i.gifer.com/F1Wp.gif"
+    src="https://i0.wp.com/media2.giphy.com/media/lA0szDkpv0E0g/giphy.gif?resize=500%2C376&ssl=1"
     width="200"
     title="hover text">
 </div>
