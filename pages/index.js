@@ -63,7 +63,7 @@ export default function Home() {
     };
 
     return (
-        <div className="grid place-content-center bg-coolwhite min-h-screen py-5">
+        <div className="grid place-content-center bg-coolwhite min-h-screen py-5 px-10">
             <motion.div
                 initial={{ scale: 0 }}
                 animate={{ rotate: 360, scale: 1 }}
@@ -150,15 +150,16 @@ export default function Home() {
                     <MdManageSearch className='text-4xl my-auto mr-2'/>
                     <input
                         type="search"
-                        className="block w-3/4 px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding border border-solid border-gray rounded transition ease-in-out focus:text-gray focus:bg-white focus:border-skyblue focus:outline-none"
+                        className="block w-8/12 px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding border border-solid border-gray rounded transition ease-in-out focus:text-gray focus:bg-white focus:border-skyblue focus:outline-none"
                         placeholder="Query Event Descriptions"
                         onChange={handleQueryChange}
                         data-cy="evnt-querybar"
                     />
+                    <p className='text-[#8c8c90] ml-2 my-auto' data-cy="num-query_results">{queryEvents.length} {queryEvents.length == 1 ? 'result': 'results'}</p>
                 </div>
             }
 
-            <ol className="relative border-l border-gray my-10 max-w-xl">
+            <ol className="relative border-l border-gray my-10 max-w-xl" data-cy="evnt-list">
                 {eventElements}
             </ol>
 
