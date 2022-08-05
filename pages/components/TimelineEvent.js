@@ -1,10 +1,6 @@
 export default function TimelineEvent({evnt_date, title, description, url}) {
     
-    let evntDate = "";
-
-    if (evntDate.indexOf("BD") !== -1) {
-        evntDate = evnt_date + " AD"
-    }
+    var evntDate = evnt_date.indexOf("BC") !== -1 ? evnt_date : evnt_date + " AD";
     
     return (
         <li className="mb-10 ml-4">
