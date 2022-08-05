@@ -34,7 +34,7 @@ export default function Home() {
 
     const eventElements = queryEvents.map((ev, index) => (
         <TimelineEvent
-            evnt_date={ev.year}
+            evnt_date={ev.year.includes("BC") ? ev.year : ev.year + " AD"}
             title={ev.links[0].title}
             description={ev.text}
             url={ev.links[0].link}
