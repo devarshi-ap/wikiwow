@@ -49,7 +49,6 @@ export default function Home() {
                 ev.text.toLowerCase().includes(event.target.value.toLowerCase())
             )
         );
-        // setQueryEvents(events.filter(ev => ev.links[0].title.toLowerCase().includes(event.target.value.toLowerCase())))
     };
 
     const addEvents = () => {
