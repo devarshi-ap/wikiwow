@@ -4,7 +4,7 @@
 
 Well... not in the *traditional sense*. Specify any month and day, and **Wikiwow** will list to you every significant event that occurred on that date, in chronological order.
 
-Scroll away into the tens of hundreds of awesome historical events, curated by Wikipedia's API, that have transpired all around our World!
+Scroll away into the tens of hundreds of awesome historical events, curated by Wikipedia's API, that have transpired all around our World! Interested about the 2003 Colima Earthquake but you're too lazy to find videos and readings on it? No problemo! **Wikiwow** curates each event with its own wikipedia link and 2 Youtube videos!
 
 <div align="center">
   <img
@@ -19,8 +19,9 @@ https://user-images.githubusercontent.com/59234436/183253142-300dc9bc-8ee6-4bbf-
 
 #### Core Features:
 
--   Use the powerful Wikipedia API to list historical events on a given month and day
--   Query historical events listed chronologically by keywords
+-   Use the powerful Wikipedia API to list historical events, chronologically, on a given month and day
+-   Filter historical events by keywords using the querybar
+-   Watch Youtube videos about any given event curated by the back-end with the Youtube API
 
 #### Built With:
 
@@ -28,6 +29,7 @@ https://user-images.githubusercontent.com/59234436/183253142-300dc9bc-8ee6-4bbf-
 -   Tailwind
 -   Axios
 -   Cypress (E2E Testing)
+-   APIs: Wikipedia, Youtube
 -   💛
 
 #### Getting Started:
