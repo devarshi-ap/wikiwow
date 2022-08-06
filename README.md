@@ -6,13 +6,16 @@ Well... not in the *traditional sense*. Specify any month and day, and **Wikiwow
 
 Scroll away into the tens of hundreds of awesome historical events, curated by Wikipedia's API, that have transpired all around our World!
 
-
 <div align="center">
   <img
     src="https://i0.wp.com/media2.giphy.com/media/lA0szDkpv0E0g/giphy.gif?resize=500%2C376&ssl=1"
     width="200"
     title="hover text">
 </div>
+
+#### Walkthrough:
+
+https://user-images.githubusercontent.com/59234436/183253142-300dc9bc-8ee6-4bbf-ba9e-859f193c2188.mov
 
 #### Core Features:
 
