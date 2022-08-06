@@ -5,7 +5,7 @@ var search = require('youtube-search');
 
 var opts = {
     maxResults: 2,
-    key: 'AIzaSyANoOQ1DSALlagcXLOpoxw8vRF9XU2ceUg',
+    key: 'AIzaSyDIvGPePKarjXHLQxfDFBh892tRvgns4jw',
 };
 
 export default function TimelineEvent({evnt_date, title, description, url}) {
