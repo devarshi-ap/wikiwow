@@ -14,9 +14,11 @@
     "next": "12.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "youtube-search": "^1.1.6"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.0",
     "autoprefixer": "^10.4.8",
     "cypress": "^10.4.0",
     "eslint": "8.21.0",
