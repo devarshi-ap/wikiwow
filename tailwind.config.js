@@ -46,5 +46,7 @@ module.exports = {
             'pos-100': '100% 100%',
         },
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/aspect-ratio'),
+    ],
 }
