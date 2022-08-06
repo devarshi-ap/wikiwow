@@ -7,7 +7,8 @@ import { MdManageSearch } from 'react-icons/md'
 
 export default function Home() {
     const [month, setMonth] = useState('1');
-    const [day, setDay] = useState();
+    // for cypress testing, set this back to useState();
+    const [day, setDay] = useState(1);
     const [totalEvents, setTotalEvents] = useState([]);
     const [events, setEvents] = useState([]);
     const [queryEvents, setQueryEvents] = useState([]);
@@ -21,7 +22,6 @@ export default function Home() {
         axios
             .get(`https://history.muffinlabs.com/date/${month}/${day}`)
             .then((res) => {
-                console.log(res.data.data.Events.slice(0, 5));
                 setTotalEvents(res.data.data.Events);
                 setEvents(res.data.data.Events.slice(0, 5));
                 setQueryEvents(res.data.data.Events.slice(0, 5));
@@ -43,7 +43,6 @@ export default function Home() {
     ));
 
     const handleQueryChange = (event) => {
-        console.log(event.target.value);
         setQueryEvents(
             events.filter((ev) =>
                 ev.text.toLowerCase().includes(event.target.value.toLowerCase())
